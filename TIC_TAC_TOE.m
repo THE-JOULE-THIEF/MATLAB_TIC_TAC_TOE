@@ -1,3 +1,7 @@
+% TIC TAC TOE v1.00
+% By THE-JOULE-THIEF
+% Created on : 21-08-2022
+
 function varargout = TIC_TAC_TOE(varargin)
 % TIC_TAC_TOE MATLAB code for TIC_TAC_TOE.fig
 %      TIC_TAC_TOE, by itself, creates a new TIC_TAC_TOE or raises the existing
@@ -22,7 +26,7 @@ function varargout = TIC_TAC_TOE(varargin)
 
 % Edit the above text to modify the response to help TIC_TAC_TOE
 
-% Last Modified by GUIDE v2.5 20-Aug-2022 23:21:30
+% Last Modified by GUIDE v2.5 21-Aug-2022 13:51:08
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -91,6 +95,7 @@ elseif handles.counter == 1 && isnan(handles.X(1,1))
     set(handles.aa,'String','X')
     guidata(hObject, handles)
 end
+checkwinner(hObject,handles);
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -109,6 +114,7 @@ elseif handles.counter == 1 && isnan(handles.X(1,2))
     set(handles.ab,'String','X')
     guidata(hObject, handles)
 end
+checkwinner(hObject,handles);
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -127,6 +133,7 @@ elseif handles.counter == 1 && isnan(handles.X(1,3))
     set(handles.ac,'String','X')
     guidata(hObject, handles)
 end
+checkwinner(hObject,handles);
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -145,6 +152,7 @@ elseif handles.counter == 1 && isnan(handles.X(2,1))
     set(handles.ba,'String','X')
     guidata(hObject, handles)
 end
+checkwinner(hObject,handles);
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -163,6 +171,7 @@ elseif handles.counter == 1 && isnan(handles.X(2,2))
     set(handles.bb,'String','X')
     guidata(hObject, handles)
 end
+checkwinner(hObject,handles);
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -181,6 +190,7 @@ elseif handles.counter == 1 && isnan(handles.X(2,3))
     set(handles.bc,'String','X')
     guidata(hObject, handles)
 end
+checkwinner(hObject,handles);
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -199,6 +209,7 @@ elseif handles.counter == 1 && isnan(handles.X(3,1))
     set(handles.ca,'String','X')
     guidata(hObject, handles)
 end
+checkwinner(hObject,handles);
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -217,9 +228,9 @@ elseif handles.counter == 1 && isnan(handles.X(3,2))
     set(handles.cb,'String','X')
     guidata(hObject, handles)
 end
+checkwinner(hObject,handles);
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in cc.
 function cc_Callback(hObject, eventdata, handles)
@@ -235,7 +246,7 @@ elseif handles.counter == 1 && isnan(handles.X(3,3))
     set(handles.cc,'String','X')
     guidata(hObject, handles)
 end
-
+checkwinner(hObject,handles);
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -243,6 +254,8 @@ end
 % --- Executes on button press in clearbtn.
 function clearbtn_Callback(hObject, eventdata, handles)
 % hObject    handle to clearbtn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 handles.X = nan(3);
 handles.counter = 0;
 set(handles.aa,'String','')
@@ -256,5 +269,85 @@ set(handles.cb,'String','')
 set(handles.cc,'String','')
 guidata(hObject, handles)
 
+function output_Callback(hObject, eventdata, handles)
+% hObject    handle to output (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of output as text
+%        str2double(get(hObject,'String')) returns contents of output as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function output_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to output (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+function checkwinner(hObject,handles)
+if (handles.X(1,:) == 1)
+    disp('Winner : X')
+    set(handles.btn_win,'String','Winner : X')
+elseif (handles.X(2,:) == 1)
+    disp('Winner : X')
+    set(handles.btn_win,'String','Winner : X')
+elseif (handles.X(3,:) == 1)
+    disp('Winner : X')
+    set(handles.btn_win,'String','Winner : X')
+elseif (handles.X(:,1) == 1)
+    disp('Winner : X')
+    set(handles.btn_win,'String','Winner : X')
+elseif (handles.X(:,2) == 1)
+    disp('Winner : X')
+    set(handles.btn_win,'String','Winner : X')
+elseif (handles.X(:,3) == 1)
+    disp('Winner : X')
+    set(handles.btn_win,'String','Winner : X')
+elseif (handles.X(1,1) == 1) && (handles.X(2,2) == 1) && (handles.X(3,3) == 1)
+    disp('Winner : X')
+    set(handles.btn_win,'String','Winner : X')
+elseif (handles.X(1,3) == 1) && (handles.X(2,2) == 1) && (handles.X(3,1) == 1)
+    disp('Winner : X')
+    set(handles.btn_win,'String','Winner : X')
+end
+
+if (handles.X(1,:) == 0)
+    disp('Winner : O')
+    set(handles.btn_win,'String','Winner : O')
+elseif (handles.X(2,:) == 0)
+    disp('Winner : O')
+    set(handles.btn_win,'String','Winner : O')
+elseif (handles.X(3,:) == 0)
+    disp('Winner : O')
+    set(handles.btn_win,'String','Winner : O')
+elseif (handles.X(:,1) == 0)
+    disp('Winner : O')
+    set(handles.btn_win,'String','Winner : O')
+elseif (handles.X(:,2) == 0)
+    disp('Winner : O')
+    set(handles.btn_win,'String','Winner : O')
+elseif (handles.X(:,3) == 0)
+    disp('Winner : O')
+    set(handles.btn_win,'String','Winner : O')
+elseif (handles.X(1,1) == 0) && (handles.X(2,2) == 0) && (handles.X(3,3) == 0)
+    disp('Winner : O')
+    set(handles.btn_win,'String','Winner : O')
+elseif (handles.X(1,3) == 0) && (handles.X(2,2) == 0) && (handles.X(3,1) == 0)
+    disp('Winner : O')
+    set(handles.btn_win,'String','Winner : O')
+end
+
+guidata(hObject, handles)
+
+
+% --- Executes on button press in btn_win.
+function btn_win_Callback(hObject, eventdata, handles)
+% hObject    handle to btn_win (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
